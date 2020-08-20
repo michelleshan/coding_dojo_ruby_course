@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <h1>New Product Form</h1>
+    </div>
+    <div class="row">
+        <form action="<%= products_path %>" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="row">
+                <div class="col" id='labels'>
+                    <p><label for="product[name]">Name:</label></p>
+                    <p><label for="product[description]">Description:</label></p>
+                    <p><label for="product[category]">Category:</label></p>
+                    <p><label for="product[quantity]">Quantity:</label></p>
+                    <p><label for="product[price]">Price:</label></p>
+                </div>
+                <div class="col" id='inputs'>
+                    <p><input type="text" name="product[name]"></p>
+                    <p><textarea name="product[description]" cols="30" rows="5"></textarea></p>
+                    <p>
+                        <input type="radio" name="product[category]" value="Clothing"> Clothing
+                        <input type="radio" name="product[category]" value="Electronics"> Electronics
+                        <input type="radio" name="product[category]" value="Household"> Household goods
+                        <input type="radio" name="product[category]" value="Sports"> Sports & Outdoors
+                        <input type="radio" name="product[category]" value="Toys"> Toys
+                    </p>
+                    <p><input type="text" name="product[quantity]"></p>
+                    <p><input type="text" name="product[price]"></p>
+                    <p><input type="hidden" name="product[user_id]" value="<%= current_user.id %>"></p>
+                    <p><button type="submit">Submit</button></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

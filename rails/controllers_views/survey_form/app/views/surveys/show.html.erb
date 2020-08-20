@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <p><%= flash[:message] %></p>
+    </div>
+    <div class="row">
+        <h1>Submitted Information</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>Name:</p>
+            <p>Dojo Location:</p>
+            <p>Favorite Language:</p>
+            <p>Comment:</p>
+        </div>
+        <div class="col">
+            <p><%= @results['name'] %></p>
+            <p><%= @results['location'] %></p>
+            <p><%= @results['language'] %></p>
+            <p><%= @results['comment'] %></p>
+        </div>
+    </div>
+    <div class="row">
+        <a href="/">Go Back</a>
+    </div>
+</div>

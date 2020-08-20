@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <h1>New User</h1>
+    </div>
+    <div class="row">
+        <form action="<%= users_path %>" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="col">
+                <p><label for="user[name]">Name:</label></p>
+                <p><label for="user[email]">Email:</label></p>
+                <p><label for="user[password]">Password:</label></p>
+                <p><label for="user[password_confirmation]">Password Confirmation:</label></p>
+            </div>
+            <div class="col">
+                <p><input type="text" name="user[name]" id="Name"></p>
+                <p><input type="email" name="user[email]" id="Email"></p>
+                <p><input type="password" name="user[password]" id="Password"></p>
+                <p><input type="password" name="user[password_confirmation]" id="Password_Confirmation"></p>
+                <button type="submit">Join</button>
+            </div>
+        </form>
+    </div>
+</div>

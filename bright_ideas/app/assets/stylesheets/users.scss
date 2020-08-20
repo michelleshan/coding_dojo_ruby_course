@@ -1,0 +1,39 @@
+*{
+    font-family: sans-serif;
+}
+
+.container{
+    padding: 20px 20px;
+}
+
+#boxes{
+    padding: 20px 20px;
+    display: inline-block;
+    vertical-align: top;
+    border: 5px solid black;
+    margin: 10px 10px;
+}
+
+.col{
+    display: inline-block;
+    vertical-align: top;
+}
+
+button{
+    border: 2px solid black;
+    box-shadow: 2px 2px black;
+}
+
+.red{
+    color: red;
+    font-size: 16px;
+    margin: 20px 20px;
+}
+
+input{
+    border: 2px solid black;
+}
+
+.password{
+    font-size: 12px;
+}

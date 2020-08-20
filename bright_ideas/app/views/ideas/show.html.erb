@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <table>
+            <td><a href="<%= user_path(@idea.user) %>"><%= @idea.user.alias %></a> says:</td>
+            <td class='ideaBox'><%= @idea.content %></td>
+        </table>
+    </div>
+    <div class="row">
+        <p>People who liked this post:</p>
+        <table class="showTable">
+            <thead>
+                <th>Alias</th>
+                <th>Name</th>
+            </thead>
+            <tbody>
+                <% @idea.users_that_like.uniq.each do |user| %>
+                <tr>
+                    <td><a href="<%= user_path(user) %>"><%= user.alias %></a></td>
+                    <td><%= user.name %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

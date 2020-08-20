@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <h2>Welcome!</h1>
+    </div>
+    <div class="row">
+        <div class="col" id="boxes">
+            <h2>Register</h2>
+            <form action="<%= create_user_path %>" method="POST">
+                <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                <div class="row">
+                    <div class="col" name="labels">
+                        <p><label for="user[name]">Name:</label></p>
+                        <p><label for="user[alias]">Alias:</label></p>
+                        <p><label for="user[email]">Email:</label></p>
+                        <p><label for="user[password]">Password:</label></p>
+                    </div>
+                    <div class="col" name="inputs">
+                        <p><input type="text" name="user[name]"></p>
+                        <p><input type="text" name="user[alias]"></p>
+                        <p><input type="email" name="user[email]"></p>
+                        <p><input type="password" name="user[password]"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="password">*Password should be at least 8 characters</p>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p><label for="user[password_confirmation]">Confirm PW:</label></p>
+                    </div>
+                    <div class="col">
+                        <p><input type="password" name="user[password_confirmation]"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+        <div class="col" id="boxes">
+            <h2>Login</h2>
+            <form action="<%= login_path %>" method="POST">
+                <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                <div class="col">
+                    <p><label for="user[email]">Email:</label></p>
+                    <p><label for="user[password]">Password:</label></p>
+                </div>
+                <div class="col">
+                    <p><input type="email" name="user[email]"></p>
+                    <p><input type="password" name="user[password]"></p>
+                    <p><button type="submit">Login</button></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

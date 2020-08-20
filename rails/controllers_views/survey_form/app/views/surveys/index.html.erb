@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <h1>Survey Form</h1>
+    </div>
+    <div class="row">
+        <form action="/surveys/create" method='POST'>
+            <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+            <div class="col" id='labels'>
+                <p><label for="survey[name]">Your Name:</label></p>
+                <p><label for="survey[location]">Dojo Location:</label></p>
+                <p><label for="survey[language]">Favorite Language:</label></p>
+                <p><label for="survey[comment]">Comment (optional):</label></p>
+            </div>
+            <div class="col" id='inputs'>
+                <p><input type="text" name='survey[name]'></p>
+                <p>
+                    <select name='survey[location]'>
+                        <option value="Burbank">Burbank</option>
+                        <option value="Chicago">Chicago</option>
+                        <option value="Dallas">Dallas</option>
+                        <option value="Seattle">Seattle</option>
+                        <option value="Tulsa">Tulsa</option>
+                    </select>
+                </p>
+                <p>
+                    <select name='survey[language]'>
+                        <option value="Javascript">Javascript</option>
+                        <option value="Ruby">Ruby</option>
+                        <option value="Python">Python</option>
+                        <option value="C#">C#</option>
+                        <option value="C++">C++</option>
+                    </select>
+                </p>
+                <p><textarea name="survey[comment]" cols="30" rows="10"></textarea></p>
+                <button type='submit'>Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

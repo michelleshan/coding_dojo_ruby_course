@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <h1>Edit Your Profile</h1>
+    </div>
+    <div class="row">
+        <form action="<%= user_path(@user) %>" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="patch">
+                <div class="col" name="labels">
+                    <p><label for="user[first_name]">First Name:</label></p>
+                    <p><label for="user[last_name]">Last Name:</label></p>
+                    <p><label for="user[email]">Email:</label></p>
+                    <p><label for="user[location]">Location:</label></p>
+                </div>
+                <div class="col" name="inputs">
+                    <p><input type="text" name="user[first_name]" value="<%= @user.first_name %>"></p>
+                    <p><input type="text" name="user[last_name]" value="<%= @user.last_name %>"></p>
+                    <p><input type="email" name="user[email]" value="<%= @user.email %>"></p>
+                    <div class="col">
+                        <input type="text" name="user[location]" size= 14 value="<%= @user.location %>">
+                    </div>
+                    <div class="col">
+                        <select name="user[state]">
+                            <option value="AK">AK</option>
+                            <option value="CA">CA</option>
+                            <option value="IL">IL</option>
+                            <option value="NY">NY</option>
+                            <option value="TX">TX</option>
+                        </select>
+                    </div>
+                    <p><button type="submit">Update Records</button></p>
+                </div>
+        </form>
+    </div>
+</div>

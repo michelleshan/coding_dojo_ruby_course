@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <h1>Hi <%= @user.name %>!</h1>
+    </div>
+    <div class="row" id="newIdea">
+        <form action="<%= create_idea_path %>" method="POST">
+            <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+            <input type="text" name="idea[content]" size=85 placeholder="Post something witty here...">
+            <input type="hidden" name="idea[user_id]" value="<%= @user.id %>">
+            <button type="submit">Idea!</button>
+        </form>
+    </div>
+    <div class="row">
+        <table>
+            <div class="oneIdea">
+                <% @ideas.each do |idea| %>
+                <tr>
+                    <td><a href="<%= user_path(idea.user) %>"><%= idea.user.alias %></a> says:</td>
+                    <td>
+                        <div class="ideaBox">
+                            <%= idea.content %>
+                        </div>
+                    </td>
+                    <td>
+                        <% if idea.user == current_user %>
+                        <form action="<%= destroy_idea_path(idea) %>" method="POST">
+                            <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit">X</button>
+                        </form>
+                        <% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td>
+                        <% if idea.users_that_like.include?(current_user) %>
+                        Liked
+                        <% else %>
+                        <%= link_to "Like", like_path(idea,current_user) %>
+                        <% end %>
+                        <a href="<%= idea_path(idea) %>"><%= idea.likes.count %> people</a> like this.
+                    </td>
+                </tr>
+                <% end %>
+            </div>
+        </table>
+    </div>
+</div>

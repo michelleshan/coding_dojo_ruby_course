@@ -1,0 +1,12 @@
+<form action="/sessions" method="post">
+    <input type="hidden" name='authenticity_token' value='<%= form_authenticity_token %>'>
+    <input type="text" name="user[name]" placeholder="Name">
+    <input type="password" name="user[password]" placeholder="Password">
+    <input type="submit" value="Log In">
+</form>
+
+<hr>
+<% if current_user %>
+<h1>Current User is <%= current_user.name %></h1>
+<a href="sessions/destroy">Logout</a>
+<% end %>

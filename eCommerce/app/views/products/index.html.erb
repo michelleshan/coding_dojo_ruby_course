@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <h1>Welcome, <%= @user.first_name %>!</h1>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <h2>Shop All Products</h2>
+        </div>
+        <div class="col">
+            <%= link_to "List New Product", new_product_path %>
+        </div>
+    </div>
+    <div class="row">
+        <% @products.each do |product| %>
+            <div class="card" style="width: 18rem;">
+                <%# <img src="" class="card-img-top" alt="photo"> %>
+                <%= image_tag product.photo.url if product.photo? %>
+                <div class="card-body">
+                    <h5 class="card-title"><a href="<%= product_path(product) %>"><%= product.name %></a> $<%= product.price %></h5>
+                        <p class="card-text"><%= product.description %></p>
+                        <form action="<%= add_to_cart_path(current_user.cart, product) %>" method="POST">
+                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                            <input type="hidden" name="cart_product[product_id]" value="<%= product.id %>">
+                            <input type="hidden" name="cart_product[cart_id]" value="<%= @user.cart.id %>">
+                            <input type="hidden" name="cart_product[quantity]" value=1>
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </form>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

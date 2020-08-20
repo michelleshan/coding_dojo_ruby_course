@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <h1><%= @user.username %></h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>Name: </p>
+            <p>Email: </p>
+            <p>Location: </p>
+            <p>Member since: </p>
+        </div>
+        <div class="col">
+            <p><%= @user.first_name %> <%= @user.last_name %></p>
+            <p><%= @user.email %></p>
+            <p><%= @user.state %></p>
+            <p><%= @user.created_at %></p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <h2>Products Listed by <%= @user.username %></h2>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <% @user.products.each do |product| %>
+                    <tr>
+                        <td><a href="<%= product_path(product) %>"><%= product.name %></a></td>
+                        <td><%= product.description %></td>
+                        <td><%= product.category %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.quantity %></td>
+                        <% if product.user == current_user %>
+                            <td>
+                                <%= link_to "Edit", edit_product_path(product) %> 
+                                <form action="<%= product_path(product) %>" method="POST">
+                                    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                                    <input type="hidden" name="_method" value="delete">
+                                    <button type="submit" class="buttonlink">Delete</button>
+                                </form>
+                            </td>
+                        <% else %>
+                            <td>
+                                <form action="<%= add_to_cart_path(current_user.cart, product) %>" method="POST">
+                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                    <input type="hidden" name="cart_product[product_id]" value="<%= product.id %>">
+                                    <input type="hidden" name="cart_product[cart_id]" value="<%= @user.cart.id %>">
+                                    <input type="hidden" name="cart_product[quantity]" value=1>
+                                    <button class="btn btn-primary">Add to Cart</button>
+                                </form>
+                            </td>
+                        <% end %>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

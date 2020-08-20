@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Welcome, <%= @user.first_name %>!</h1>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Here are some of the events at your state:</h3>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Host</th>
+                <th>Action/Status</th>
+            </thead>
+            <tbody>
+                <% @events.each do |event| %>
+                    <% if event.state == current_user.state %>
+                        <tr>
+                            <td><a href="<%= event_path(event) %>"><%= event.name %></a></td>
+                            <td><%= event.date %></td>
+                            <td><%= event.location %></td>
+                            <td><%= event.user.first_name %></td>
+                            <td>
+                                <% if event.user == current_user %>
+                                    <%= link_to "Edit", edit_event_path(event) %>
+                                    <%= link_to "Delete", delete_event_path(event) %>
+                                <% else %>
+                                    <% if event.users_attending.include?(current_user) %>
+                                        Joining
+                                        <%= link_to "Cancel", cancel_path(event) %>
+                                    <% else %>
+                                        <%= link_to "Join", join_path(event) %>
+                                    <% end %>
+                                <% end %>
+                            </td>
+                        </tr>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h3>Here are some of the events on other states:</h3>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>State</th>
+                <th>Host</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <% @events.each do |event| %>
+                    <% if event.state != current_user.state %>
+                        <tr>
+                            <td><a href="<%= event_path(event) %>"><%= event.name %></a></td>
+                            <td><%= event.date %></td>
+                            <td><%= event.location %></td>
+                            <td><%= event.state %></td>
+                            <td><%= event.user.first_name %></td>
+                            <td>
+                                <% if event.user == current_user %>
+                                    <%= link_to "Edit", edit_event_path(event) %>
+                                    <%= link_to "Delete", delete_event_path(event) %>
+                                <% else %>
+                                    <% if event.users_attending.include?(current_user) %>
+                                        Joining
+                                        <%= link_to "Cancel", cancel_path(event) %>
+                                    <% else %>
+                                        <%= link_to "Join", join_path(event) %>
+                                    <% end %>
+                                <% end %>
+                            </td>
+                        </tr>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h2>Add Event</h2>
+        <form action="<%= events_path %>" method="POST">
+            <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+            <div class="col">
+                <p><label for="event[name]">Name:</label></p>
+                <p><label for="event[date]">Date:</label></p>
+                <p><label for="event[location]">Location:</label></p>
+            </div>
+            <div class="col">
+                <p><input type="text" name="event[name]"></p>
+                <p><input type="date" name="event[date]"></p>
+                <div class="col">
+                    <input type="text" name="event[location]" size=14>
+                </div>
+                <div class="col">
+                    <select name="event[state]">
+                            <option value="AK">AK</option>
+                            <option value="CA">CA</option>
+                            <option value="IL">IL</option>
+                            <option value="NY">NY</option>
+                            <option value="TX">TX</option>
+                    </select>
+                </div>
+                <p><input type="hidden" name="event[user_id]" value="<%= current_user.id %>"></p>
+                <p><button type="submit">Add Event</button></p>
+            </div>
+        </form>
+    </div>
+</div>

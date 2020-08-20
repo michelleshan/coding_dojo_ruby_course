@@ -1,0 +1,13 @@
+<div class="container">
+    <h1>Welcome to Dojo Pizzas</h1>
+    <table>
+        <th>Name</th>
+        <th>Address</th>
+        <% @pizzas.each do |pizza| %>
+        <tr>
+            <td><%= pizza.name %></td>
+            <td><%= pizza.address %></td>
+        </tr>
+        <% end %>
+    </table>
+</div>

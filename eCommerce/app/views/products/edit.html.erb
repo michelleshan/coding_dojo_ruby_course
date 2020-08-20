@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <h1>Edit Product</h1>
+    </div>
+    <div class="row">
+        <form action="<%= product_path(@product) %>" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="patch">
+            <div class="row">
+                <div class="col" id='labels'>
+                    <p><label for="product[name]">Name:</label></p>
+                    <p><label for="product[description]">Description:</label></p>
+                    <p><label for="product[category]">Category:</label></p>
+                    <p><label for="product[quantity]">Quantity:</label></p>
+                    <p><label for="product[price]">Price:</label></p>
+                </div>
+                <div class="col" id='inputs'>
+                    <p><input type="text" name="product[name]" value="<%= @product.name %>"></p>
+                    <p><textarea name="product[description]" cols="30" rows="5"><%= @product.description %></textarea></p>
+                    <p>
+                        <input type="radio" name="product[category]" value="clothing"> Clothing
+                        <input type="radio" name="product[category]" value="electronics"> Electronics
+                        <input type="radio" name="product[category]" value="Household"> Household goods
+                        <input type="radio" name="product[category]" value="sports"> Sports & Outdoors
+                        <input type="radio" name="product[category]" value="toys"> Toys
+                    </p>
+                    <p><input type="text" name="product[quantity]" value="<%= @product.quantity %>"></p>
+                    <p><input type="text" name="product[price]" value="<%= @product.price %>"></p>
+                    <p><input type="hidden" name="product[user_id]" value="<%= current_user.id %>"></p>
+                    <p><button type="submit">Submit</button></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

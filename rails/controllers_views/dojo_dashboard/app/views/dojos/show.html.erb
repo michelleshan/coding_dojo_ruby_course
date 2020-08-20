@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <h1><%= @dojo.branch %></h1>
+    </div>
+    <div class="row">
+        <p>Address: <%= @dojo.street %></p>
+        <p>City: <%= @dojo.city %> State: <%= @dojo.state %></p>
+    </div>
+    <div class="row">
+        <p><%= link_to "Home", dojos_path %> | <%= link_to "Edit", edit_dojo_path(@dojo) %></p>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <h1>Log In</h1>
+    </div>
+    <div class="row">
+        <form action="<%= sessions_path %>" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="col">
+                <p><label for="user[email]">Email:</label></p>
+                <p><label for="user[password]">Password:</label></p>
+            </div>
+            <div class="col">
+                <p><input type="text" name="user[email]" id="Email"></p>
+                <p><input type="password" name="user[password]" id="Password"></p>
+                <button type="submit">Log In</button>
+            </div>
+        </form>
+    </div>
+</div>

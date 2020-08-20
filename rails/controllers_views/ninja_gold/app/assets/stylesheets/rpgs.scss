@@ -1,0 +1,42 @@
+.container{
+    padding: 20px 20px;
+}
+
+.row{
+    margin: 20px 0px;
+}
+
+.col{
+    border: 5px solid black;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0px 15px;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    button{
+        padding: 5px 8px;
+        border: 2px solid black;
+        box-shadow: 2px 2px black;
+    }
+}
+
+input{
+    border: 3px solid black;
+}
+
+.logbox{
+    padding: 10px 20px;
+    height: 300px;
+    width: 920px;
+    border: 3px solid black;
+    overflow-y: scroll;
+}
+
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}

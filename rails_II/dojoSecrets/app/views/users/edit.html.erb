@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <h1>Edit User</h1>
+    </div>
+    <div class="row">
+        <form action="<%= user_path(current_user) %>" method="POST">
+            <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+            <input type="hidden" name="_method" value="patch">
+            <div class="col">
+                <p><label for="user[name]">Name:</label></p>
+                <p><label for="user[email]">Email:</label></p>
+            </div>
+            <div class="col">
+                <p><input type="text" name="user[name]" id="name" value="<%= current_user.name %>"></p>
+                <p><input type="email" name="user[email]" id="email" value="<%= current_user.email %>"></p>
+                <button type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <form action="<%= user_path(@user) %>" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="delete">
+            <button type='submit'>Delete Account</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <h1>My Shopping Cart</h1>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price/unit</th>
+                <th>Total Price</th>
+                <th>Remove</th>
+            </thead>
+            <tbody>
+                <% @user.cart.products.each do |product| %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td><%= product.description %></td>
+                        <td><%= product.category %></td>
+                        <td><%= product.cart_products.where(cart_id: @user.cart).first.quantity %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.price * product.cart_products.where(cart_id: @user.cart).first.quantity %></td>
+                        <td>
+                            <form action="<%= remove_from_cart_path(product.cart_products.first) %>" method="POST">
+                                <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                                <input type="hidden" name="_method" value="delete">
+                                <input type="hidden" name="cart_product[id]" value="<%= product.cart_products.first.id %>">
+                                <button type="submit">X</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% end %>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th>Cart Total</th>
+                        <th><%= @cart_total %></th>
+                        <td></td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
